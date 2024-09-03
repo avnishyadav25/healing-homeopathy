@@ -13,6 +13,8 @@ const commentRoutes = require('./routes/commentRoutes');
 const newsletterUserRoutes = require('./routes/newsletterUserRoutes');
 const newsletterRoutes = require('./routes/newsletterRoutes');
 const serviceRoutes = require('./routes/serviceRoutes');
+const uploadRoutes = require('./routes/uploadRoutes');
+
 
 
 const path = require('path');
@@ -49,9 +51,6 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 
-// Middleware to serve static files (for serving uploaded images)
-app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
-
 // Routes
 // Routes
 app.use('/users', userRoutes);
@@ -65,6 +64,17 @@ app.use('/blogs', blogRoutes);
 app.use('/comments', commentRoutes);
 app.use('/newsletter-users', newsletterUserRoutes);
 app.use('/services', serviceRoutes);
+app.use('/upload', uploadRoutes); // API endpoint for uploads
+
+// Serve uploaded files statically
+//app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
+app.use('/uploads', (req, res, next) => {
+  console.log(`Serving file: ${req.path}`);
+  console.log(path.join(__dirname, 'uploads') +req.path);
+  next();
+}, express.static(path.join(__dirname, 'uploads')));
+
+
 
 
 // Google OAuth routes

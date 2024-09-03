@@ -8,6 +8,7 @@ import HomePage from './pages/public/HomePage';
 import AboutPage from './pages/public/AboutPage';
 import ServicesPage from './pages/public/ServicesPage';
 import BlogPage from './pages/public/BlogPage';
+import BlogPostPage from './pages/public/BlogPostPage';
 import ContactPage from './pages/public/ContactPage';
 import OrderMedicinePage from './pages/public/OrderMedicinePage';
 import PersonalizedConsultation from './pages/public/PersonalizedConsultation';
@@ -82,6 +83,7 @@ function App() {
           <Route path="/services/medicine-delivery" element={<MedicineDelivery />} />
           <Route path="/medicine-delivery" element={<MedicineDeliveryPage />} />
           <Route path="/blogs" element={<BlogPage />} />
+          <Route path="/blogs/:id" element={<BlogPostPage />} />
           <Route path="/book-appointment" element={<AppointmentPage />} />
           <Route path="/contact" element={<ContactPage />} />
           <Route path="/order-medicine" element={<OrderMedicinePage />} />
@@ -92,10 +94,13 @@ function App() {
           <Route path="/admin-dashboard" element={<AdminDashboardPage />} />
         <Route path="/admin-dashboard/blog/all-blogs" element={<AllBlogsPage />} />
         <Route path="/admin-dashboard/blog/create-blog" element={<CreateBlogPage />} />
+        <Route path="/admin/blogs/create" element={<CreateBlogPage />} />
+        <Route path="/admin/blogs/edit" element={<CreateBlogPage />} />
         <Route path="/admin-dashboard/blog/comments" element={<CommentsPage />} />
         <Route path="/admin-dashboard/blog/media" element={<MediaPage />} />
         <Route path="/admin-dashboard/product/add-product" element={<AddProductPage />} />
         <Route path="/admin-dashboard/blog/create-blog" element={<AddBlogPage />} />
+
         <Route path="/admin-dashboard/user/add-user" element={<AddUserPage />} />
         <Route path="/admin-dashboard/appointment/add-appointment" element={<AddAppointmentUserPage />} />
         <Route path="/admin-dashboard/newsletter/add-newsletter-user" element={<AddNewsletterUserPage />} />
