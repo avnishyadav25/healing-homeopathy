@@ -95,6 +95,7 @@ root
     ├── /hooks              # Custom hooks
     └── /utils              # Helper functions (validation, formatting)
 
+```
 
 ## Installation
 
