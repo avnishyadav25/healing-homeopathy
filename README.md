@@ -1,182 +1,96 @@
-# Healing Homoeopathy
+# Healing Homeopathy Web and Mobile App
 
-Discover the essence of Homoeopathy at HomoeoInsights. Explore natural healing, unravel remedies, and embark on the journey of holistic wellness. Let's dive into our world of gentle yet powerful insights for a healthier tomorrow.
+## Project Overview
 
-## Project Description
+Healing Homeopathy is a web and mobile application designed to offer personalized homeopathic consultancy and wellness services. The platform includes features such as blog posting, service bookings, medicine delivery, user registration, and admin management.
 
-Healing Homoeopathy is a web application for homeopathic consultancy, allowing users to:
-1. Post and read blogs related to health and homeopathic medicine and treatment.
-2. Book appointments for consultations based on an available calendar.
-3. Share information about the BHMS course and related topics.
-4. Allow other doctors to register and provide consultation services through the platform.
+The project structure is designed for scalability, maintainability, and performance optimization, built with modern web technologies.
 
-## Features
+## Table of Contents
 
-- **Personalized Consultation**
-- **Natural Remedies**
-- **Family Wellness**
-- **Chronic Conditions**
-- **Mental Well-being**
-- **Immune Boosting**
+1. [Technologies Used](#technologies-used)
+2. [Project Structure](#project-structure)
+3. [Installation](#installation)
+4. [Features](#features)
+5. [API Documentation](#api-documentation)
+6. [Folder Structure](#folder-structure)
+
+## Technologies Used
+
+- **Frontend**: 
+  - React.js, Material-UI (MUI), Bootstrap
+  - JoditEditor for WYSIWYG content creation
+  - Axios for API requests
+  - React Router for routing
+  - Particles.js for animation
+  - Aceternity-UI (if included)
+  
+- **Backend**: 
+  - Node.js, Express.js
+  - MongoDB for database
+  - Multer for file uploads (images)
+  - JSON Web Token (JWT) for authentication
+  - Multer for file handling
+
+- **Mobile App** (To be developed later):
+  - React Native (Planned)
+
+- **Authentication**: 
+  - JWT Authentication
+  - OAuth with Google for Login
+
+- **CMS (Admin Dashboard)**:
+  - MUI Admin Panel
+  - Blog and Media Management
+  - Services and User Management
+
+---
 
 ## Project Structure
 
-### Backend
+The application is divided into three parts:
 
-The backend is built with Node.js and Express.js, connected to a MySQL database.
+1. **Frontend (Web App)**: 
+   - Contains the website's public and admin-facing pages for blog management, service booking, and user registration.
+  
+2. **Backend (API)**: 
+   - Contains REST API services that handle blog posts, user authentication, medicine orders, and service management.
 
-healing-homeopathy/
-|-- backend/
-| |-- controllers/ # Controller functions for handling requests
-| | |-- blogController.js
-| | |-- appointmentController.js
-| | |-- userController.js
-| |-- models/ # Database models
-| | |-- Blog.js
-| | |-- Appointment.js
-| | |-- User.js
-| |-- routes/ # Express routes
-| | |-- blogRoutes.js
-| | |-- appointmentRoutes.js
-| | |-- userRoutes.js
-| |-- config/ # Configuration files (e.g., database config)
-| | |-- db.js
-| |-- app.js # Main server file
-| |-- package.json
+3. **Mobile App**: 
+   - Planned for future development with React Native, integrating features like blog reading and appointment booking.
 
+---
 
-### Frontend
+### Folder Structure
 
-The frontend is built with React.js.
+```bash
+root
+├── /backend                # Backend services (Node.js + Express + MongoDB)
+│   ├── /src
+│   │   ├── /controllers    # Controllers for handling API requests
+│   │   ├── /models         # MongoDB models (e.g., Blog, User, Service)
+│   │   ├── /routes         # API routes
+│   │   ├── /services       # Business logic and service classes
+│   │   └── /utils          # Utility functions (authentication, error handling)
+│   ├── /uploads            # Directory for uploaded files (images)
+│   ├── /config             # Configuration files for database, environment, etc.
+│   └── app.js              # Entry point for the backend application
 
-healing-homeopathy/
-|-- frontend/
-| |-- public/ # Static files
-| |-- src/
-| |-- components/ # React components
-| | |-- Blog.js
-| | |-- Appointment.js
-| | |-- Home.js
-| | |-- Login.js
-| | |-- Register.js
-| |-- pages/ # Page components
-| | |-- AdminDashboard.js
-| | |-- BlogList.js
-| |-- services/ # API services
-| | |-- api.js
-| |-- App.js # Main app component
-| |-- index.js # Entry point for React
-| |-- package.json
+├── /web-app                # React.js Web App (Frontend)
+│   ├── /src
+│   │   ├── /components     # Reusable UI components (NavigationBar, Footer, Blog)
+│   │   ├── /pages          # Pages for various routes (Home, About, Blog, Services)
+│   │   ├── /admin          # Admin Panel Components (Blog Management, Dashboard)
+│   │   ├── /services       # Axios service functions to connect with backend
+│   │   ├── /assets         # Static assets (images, fonts, icons)
+│   │   └── App.js          # Main app component
+│   └── package.json        # NPM dependencies for web app
 
+├── /mobile-app             # React Native Mobile App (Planned)
+│   ├── /src
+│   └── package.json        # NPM dependencies for mobile app (React Native)
 
-
-## Setup and Running the Application
-
-### Prerequisites
-
-- Node.js
-- MySQL
-- npm or yarn
-
-### Backend Setup
-
-1. **Navigate to the backend directory:**
-
-   ```bash
-   cd healing-homeopathy/backend
-
-## Install backend dependencies:
-    ```bash
-    npm install
-
-## Start MySQL server and create the database:
-
-    ```basj
-    CREATE DATABASE healing_homeopathy;
-
-USE healing_homeopathy;
-
-CREATE TABLE users (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    name VARCHAR(255),
-    email VARCHAR(255) UNIQUE,
-    password VARCHAR(255),
-    role ENUM('doctor', 'patient') DEFAULT 'patient'
-);
-
-CREATE TABLE blogs (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    title VARCHAR(255),
-    content TEXT,
-    category VARCHAR(255),
-    author_id INT,
-    FOREIGN KEY (author_id) REFERENCES users(id)
-);
-
-CREATE TABLE appointments (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    user_id INT,
-    doctor_id INT,
-    appointment_date DATETIME,
-    status ENUM('pending', 'confirmed', 'completed') DEFAULT 'pending',
-    FOREIGN KEY (user_id) REFERENCES users(id),
-    FOREIGN KEY (doctor_id) REFERENCES users(id)
-);
-
-
-## Configure database connection in backend/config/db.js:
-    ```bash
-    const db = mysql.createConnection({
-  host: 'localhost',
-  user: 'yourusername',
-  password: 'yourpassword',
-  database: 'healing_homeopathy'
-});
-
-
-## Start the backend server:
-    ```bash
-    node app.js
-
-The server should now be running on http://localhost:3000.
-----------------------------------------------------------------------------------------------------------------------
-
-
-## Frontend Setup
-
-### Navigate to the frontend directory:
-    ```bash
-    cd healing-homeopathy/frontend
-
-### Install frontend dependencies:
-    ```bash
-    npm install
-
-### Start the React development server:
-    ```bash
-    npm start
-
-The React app should now be running on http://localhost:3000.
-
--------------------------------------------------------------------------------------------------------------------------------------
-
-
-## Running the Full Stack Application
-
-Backend:
-cd healing-homeopathy/backend
-npm install
-node app.js
-
-
-Frontend:
-cd healing-homeopathy/frontend
-npm install
-npm start
-
-
-Ensure your MySQL server is running and your database is properly configured. With both backend and frontend servers running, your full-stack application should be fully functional.
-
-
-
-
+└── /shared                 # Shared codebase across web and mobile
+    ├── /components         # Shared components (UI, forms)
+    ├── /hooks              # Custom hooks
+    └── /utils              # Helper functions (validation, formatting)
