@@ -94,3 +94,12 @@ root
     ├── /components         # Shared components (UI, forms)
     ├── /hooks              # Custom hooks
     └── /utils              # Helper functions (validation, formatting)
+
+
+## Installation
+
+### Backend
+
+```bash
+    cd backend
+    npm install
