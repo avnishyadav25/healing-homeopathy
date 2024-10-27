@@ -32,7 +32,7 @@ const getServiceById = async (req, res) => {
 
 // Create a new service
 const createService = async (req, res) => {
-  const { title, image, description, link, patients, details } = req.body;
+  const { title, image, description, link, patients, details, ctaText } = req.body;
   try {
     const newService = new Service({
       title,
@@ -52,7 +52,7 @@ const createService = async (req, res) => {
 // Update a service
 const updateService = async (req, res) => {
   const { id } = req.params;
-  const { title, image, description, link, patients, details } = req.body;
+  const { title, image, description, link, patients, details, ctaText } = req.body;
   try {
     const updatedService = await Service.findByIdAndUpdate(
       id,
